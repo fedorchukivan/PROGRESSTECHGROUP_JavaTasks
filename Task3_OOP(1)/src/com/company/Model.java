@@ -43,7 +43,7 @@ public class Model {
         public int compare(Object o1, Object o2) {
             Shape sh1 = (Shape) o1;
             Shape sh2 = (Shape) o2;
-            return Double.compare(sh2.calcArea(), sh1.calcArea());
+            return Double.compare(sh1.calcArea(), sh2.calcArea());
         }
     }
     private static class ShapeColorComparator implements Comparator {
