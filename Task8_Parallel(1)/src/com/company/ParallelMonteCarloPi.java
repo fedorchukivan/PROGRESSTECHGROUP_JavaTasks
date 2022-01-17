@@ -15,10 +15,6 @@ public class ParallelMonteCarloPi {
                 if (Math.sqrt(Math.pow(Math.random(), 2) + Math.pow(Math.random(), 2)) <= 1) {
                     localCounter++;
                 }
-                if (i < 5) {
-                    System.out.println("Iteration: " + i + "\nIterations: " + iterations);
-                }
-                else if (i == 400000) { System.out.println("Time: " + (startTime - System.currentTimeMillis()));}
             }
             counters.addToCounter(localCounter);
         }
@@ -50,7 +46,7 @@ public class ParallelMonteCarloPi {
         }
         double getResult() { return 4.0 * counter / iterations; }
     }
-    static volatile Counters counters;
+    static Counters counters;
     static long startTime;
 
     public static void main(String[] args) {
@@ -74,12 +70,12 @@ public class ParallelMonteCarloPi {
         startTime = System.currentTimeMillis();
         for (int i = 0; i < num; i++) {
             try { threads.get(i).join(); }
-            catch (InterruptedException e) { System.out.print(e); }
+            catch (InterruptedException e) { e.printStackTrace(); }
         }
         long finalTime = System.currentTimeMillis();
         System.out.println("PI: " + counters.getResult());
         System.out.println("Threads: " + num);
-        System.out.println("Iterations: " + counters.iterations);
+        System.out.println("Iterations: " + Counters.iterations);
         System.out.println("Time: " + (finalTime - startTime) + "ms.");
     }
 }
