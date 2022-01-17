@@ -30,6 +30,7 @@ public class Main {
         view.print(menuText);
         while (!sc.hasNextInt()) {
             view.print("Wrong input type! Enter option: ");
+            sc.next();
         }
         return sc.nextInt();
     }
